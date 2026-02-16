@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Floating hearts background */
+        .heart-bg {
+            position: fixed;
+            font-size: 20px;
+            animation: float-up 8s ease-in-out infinite;
+            opacity: 0.6;
+            z-index: 0;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 245, 0.95));
+            border-radius: 30px;
+            box-shadow: 
+                0 25px 60px rgba(255, 105, 135, 0.3),
+                0 0 100px rgba(255, 105, 135, 0.2),
+                inset 0 0 60px rgba(255, 182, 193, 0.1);
+            max-width: 500px;
+            width: 100%;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: cardAppear 1.2s ease-out;
+            border: 2px solid rgba(255, 105, 135, 0.3);
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b95, #ff8ba7, #ffc3d4, #ff8ba7, #ff6b95);
+            border-radius: 30px 30px 0 0;
+        }
+
+        .big-heart {
+            font-size: 80px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
+            filter: drop-shadow(0 5px 15px rgba(255, 105, 135, 0.5));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            14% { transform: scale(1.15); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.15); }
+            70% { transform: scale(1); }
+        }
+
+        .title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #ff6b95, #c44569, #ff6b95);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+            margin: 20px 0 10px;
+            line-height: 1.2;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .recipient {
+            font-size: 1.3rem;
+            color: #c44569;
+            font-weight: 600;
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .recipient a {
+            color: #c44569;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .recipient a:hover {
+            color: #ff6b95;
+            text-shadow: 0 0 10px rgba(255, 107, 149, 0.5);
+        }
+
+        .message {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 2;
+            margin: 30px 0;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .message .highlight {
+            color: #c44569;
+            font-weight: 600;
+        }
+
+        .roses {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #c44569;
+            margin-top: 30px;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .xoxo {
+            font-size: 1.2rem;
+            color: #ff6b95;
+            margin-top: 15px;
+            letter-spacing: 8px;
+            font-weight: 600;
+            animation: fadeInUp 1s ease-out 1.1s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: 30px;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ff6b95;
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .cupid-arrow {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            animation: sway 2s ease-in-out infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .love-letter {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 30px;
+            animation: sway 2s ease-in-out infinite reverse;
+        }
+
+        /* Decorative corner hearts */
+        .corner-decor {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.5;
+        }
+        .corner-decor.tl { top: 50px; left: 20px; }
+        .corner-decor.tr { top: 50px; right: 20px; }
+        .corner-decor.bl { bottom: 20px; left: 20px; }
+        .corner-decor.br { bottom: 20px; right: 20px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="sparkles"></div>
+        
+        <span class="love-letter">💌</span>
+        <span class="cupid-arrow">💘</span>
+        
+        <span class="corner-decor tl">♥</span>
+        <span class="corner-decor tr">♥</span>
+        <span class="corner-decor bl">♥</span>
+        <span class="corner-decor br">♥</span>
+        
+        <div class="big-heart">❤️</div>
+        
+        <h1 class="title">Happy Valentine's Day</h1>
+        
+        <p class="recipient">
+            To: <a href="https://x.com/blondiepredicts" target="_blank">@blondiepredicts</a> 💕
+        </p>
+        
+        <div class="roses">🌹🌹🌹</div>
+        
+        <p class="message">
+            Roses are red,<br>
+            Violets are blue,<br>
+            Your predictions are <span class="highlight">amazing</span>,<br>
+            And so are you! ✨<br><br>
+            Wishing you a day filled with<br>
+            <span class="highlight">love</span>, <span class="highlight">joy</span>, and <span class="highlight">happiness</span> 💖
+        </p>
+        
+        <div class="signature">
+            With Love
+        </div>
+        
+        <div class="xoxo">XOXO</div>
+    </div>
+
+    <script>
+        // Create floating hearts in background
+        function createFloatingHearts() {
+            const hearts = ['💕', '💖', '💗', '💓', '💝', '❤️', '💜', '💙'];
+            
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-bg';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+                heart.style.animationDelay = Math.random() * 8 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                document.body.appendChild(heart);
+            }
+        }
+
+        // Create sparkles on the card
+        function createSparkles() {
+            const sparklesContainer = document.querySelector('.sparkles');
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                sparkle.style.background = Math.random() > 0.5 ? '#ff6b95' : '#ffc3d4';
+                sparklesContainer.appendChild(sparkle);
+            }
+        }
+
+        createFloatingHearts();
+        createSparkles();
+    </script>
+</body>
+</html>
