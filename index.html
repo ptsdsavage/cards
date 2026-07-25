@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Cards 🎉</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      font-family: 'Nunito', sans-serif;
+      padding: 40px 20px;
+    }
+
+    .wrap {
+      width: min(640px, 100%);
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.4rem;
+      background: linear-gradient(90deg, #ff6fd8, #ff9f40, #ffdd57, #3cffa5, #4fc3f7, #a855f7);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+      margin-bottom: 8px;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 0% 50%;   }
+      100% { background-position: 300% 50%; }
+    }
+
+    p.subtitle {
+      color: #cfd8ff;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card-link {
+      display: block;
+      text-decoration: none;
+      background: linear-gradient(160deg, #ffffff 0%, #fff0fb 100%);
+      border-radius: 20px;
+      padding: 28px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card-link:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+    }
+
+    .card-link .emoji {
+      font-size: 2.6rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .card-link .name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.4rem;
+      color: #ff3c8e;
+    }
+
+    .card-link .detail {
+      font-size: 0.95rem;
+      color: #666;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Birthday Cards</h1>
+    <p class="subtitle">Pick a card to open 🎈</p>
+
+    <div class="grid">
+      <a class="card-link" href="eloise-birthday-card.html">
+        <span class="emoji">🦄</span>
+        <span class="name">Eloise</span>
+        <span class="detail">Turning 4!</span>
+      </a>
+
+      <a class="card-link" href="will/">
+        <span class="emoji">🚀</span>
+        <span class="name">Will</span>
+        <span class="detail">Turning 7!</span>
+      </a>
+
+      <a class="card-link" href="eren13.html">
+        <span class="emoji">🎂</span>
+        <span class="name">Eren</span>
+        <span class="detail">Turning 13!</span>
+      </a>
+
+      <a class="card-link" href="pam-birthday-card.html">
+        <span class="emoji">🌸</span>
+        <span class="name">Pam</span>
+        <span class="detail">Happy Birthday!</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

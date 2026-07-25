@@ -1,0 +1,18 @@
+services:
+  web:
+    build: .
+    container_name: danieldsavage-web
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-net"
+      - "traefik.http.routers.danieldsavage.rule=Host(`danieldsavage.com`) || Host(`www.danieldsavage.com`)"
+      - "traefik.http.routers.danieldsavage.entrypoints=websecure"
+      - "traefik.http.routers.danieldsavage.tls.certresolver=myresolver"
+      - "traefik.http.services.danieldsavage.loadbalancer.server.port=80"
+    networks:
+      - traefik-net
+
+networks:
+  traefik-net:
+    external: true
