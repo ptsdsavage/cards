@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Senate Odds Watch</title>
+  <style>
+    :root {
+      --bg: #f4f5f7;
+      --card: #ffffff;
+      --ink: #111827;
+      --muted: #4b5563;
+      --line: #e5e7eb;
+      --brand: #0d6efd;
+      --positive: #0f766e;
+      --danger: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: Inter, Arial, sans-serif; background: var(--bg); color: var(--ink);
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 18px 52px; }
+    .hero { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 24px; box-shadow: 0 10px 24px rgba(17,24,39,0.05); }
+    .kicker { letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-size: 12px; font-weight: 700; }
+    h1 { margin: 10px 0 12px; font-size: clamp(2rem, 5vw, 3.5rem); }
+    .big { font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 700; margin: 14px 0; line-height: 1.1; }
+    .row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
+    .pill { border-radius: 999px; padding: 7px 12px; font-weight: 700; font-size: 0.9rem; border: 1px solid var(--line); background: #f8fafc; }
+    .up { color: var(--positive); }
+    .down { color: var(--danger); }
+    .analysis { margin-top: 22px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; }
+    .analysis-section + .analysis-section { margin-top: 18px; }
+    .analysis h3 { margin: 0 0 8px; font-size: 1.15rem; }
+    .analysis p { margin: 0; color: var(--muted); line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; margin-top: 22px; }
+    .panel { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px; }
+    img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .meta { color: var(--muted); font-size: 0.92rem; margin-top: 14px; }
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="kicker">Current Aggregate Forecast</div>
+      <h1>Democrats Take Control of US Senate</h1>
+      <div id="current-odds" class="big">Current Odds - 66.9%</div>
+      <div class="row">
+        <div id="change-pill" class="pill up">+66.9 pts vs prior snapshot</div>
+        <div id="updated-time" class="pill">Updated: 2026-08-13T13:34:52Z</div>
+      </div>
+      <div class="meta">Market-based odds across the key Democratic Senate race contracts.</div>
+    </div>
+
+    
+    <div class="analysis">
+      <div class="analysis-section">
+        <h3>How often it updates</h3>
+        <p>This publication updates once per hour. Each refresh captures the latest available market prices and recalculates the overall Democratic Senate control probability across the current state-by-state market set.</p>
+      </div>
+      <div class="analysis-section">
+        <h3>What prediction market it uses</h3>
+        <p>The underlying data comes from Polymarket, where the relevant Senate probability contracts trade in real time. It is a market-implied signal rather than a polling model or a campaign-based forecast.</p>
+      </div>
+      <div class="analysis-section">
+        <h3>Methodology</h3>
+        <p>This tracker aggregates the active Polymarket Senate race contracts for the most competitive states and calculates the simple average Democratic win probability across the set. Each state market contributes its current market-implied probability, and the combined total is used as a real-time indicator of the probability that Democrats hold Senate control.</p>
+      </div>
+    </div>
+    
+
+    <div class="grid">
+      <div class="panel">
+        <h2>Trend</h2>
+        <img src="senate_control_chart.svg" alt="Democratic Senate control odds chart" />
+      </div>
+      <div class="panel">
+        <h2>State snapshot</h2>
+        <table>
+          <thead>
+            <tr><th>State</th><th>Probability</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Alaska</td><td>51.0%</td></tr>
+<tr><td>Georgia</td><td>92.0%</td></tr>
+<tr><td>Maine</td><td>69.5%</td></tr>
+<tr><td>Michigan</td><td>60.5%</td></tr>
+<tr><td>North Carolina</td><td>91.0%</td></tr>
+<tr><td>Ohio</td><td>52.5%</td></tr>
+<tr><td>Texas</td><td>51.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function refreshOdds() {
+      const url = 'latest_snapshot.json?ts=' + Date.now();
+      try {
+        const response = await fetch(url);
+        if (!response.ok) return;
+        const snapshot = await response.json();
+        const odds = Number(snapshot.overall_probability || 0) * 100;
+        const oddsEl = document.getElementById('current-odds');
+        if (oddsEl) oddsEl.textContent = 'Current Odds - ' + odds.toFixed(1) + '%';
+
+        const updatedEl = document.getElementById('updated-time');
+        if (updatedEl && snapshot.timestamp) updatedEl.textContent = 'Updated: ' + snapshot.timestamp;
+      } catch (error) {
+        console.warn('Could not refresh odds from latest_snapshot.json', error);
+      }
+    }
+    refreshOdds();
+  </script>
+</body>
+</html>

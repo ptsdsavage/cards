@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy 70th Birthday Nikki!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Parisienne&display=swap');
+
+    :root {
+      --ivory: #fffaf3;
+      --blush: #f7e2d5;
+      --rose: #d98a8a;
+      --gold: #d4a94b;
+      --gold-deep: #b6812d;
+      --sage: #bacfb2;
+      --brown: #4a332d;
+      --ink: #2d221f;
+      --shadow: rgba(57, 33, 25, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 18px;
+      font-family: 'Nunito', sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(242, 191, 143, 0.22), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(217, 138, 138, 0.18), transparent 20%),
+        linear-gradient(135deg, #f9f1e7 0%, #f7eae1 32%, #f8f0d9 100%);
+      overflow-x: hidden;
+    }
+
+    .card {
+      position: relative;
+      width: min(960px, 100%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,250,243,0.9));
+      border: 2px solid rgba(182, 129, 45, 0.38);
+      border-radius: 32px;
+      box-shadow: 0 30px 70px rgba(74, 51, 45, 0.17), inset 0 1px 0 rgba(255,255,255,0.8);
+      padding: 34px 30px 28px;
+      overflow: hidden;
+      animation: cardFloat 8s ease-in-out infinite;
+    }
+
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .card::before {
+      background: linear-gradient(90deg, rgba(212,169,75,0.08), rgba(217,138,138,0.08), rgba(186,207,178,0.08));
+      transform: skewY(-2deg) scale(1.08);
+    }
+
+    .card::after {
+      border: 12px solid rgba(212,169,75,0.18);
+      border-radius: 32px;
+      inset: 10px;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 8px;
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .balloon {
+      display: inline-block;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.08));
+      animation: balloonBob 3.2s ease-in-out infinite;
+    }
+
+    .top-row .balloon:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .top-row .balloon:nth-child(3) {
+      animation-delay: 0.8s;
+    }
+
+    .eyebrow {
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-size: 0.71rem;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: clamp(2.5rem, 5vw, 4.3rem);
+      line-height: 0.95;
+      color: var(--brown);
+      margin-bottom: 8px;
+    }
+
+    .line-1 {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 0.03em;
+      font-weight: 700;
+    }
+
+    .line-2 {
+      display: block;
+      font-family: 'Parisienne', cursive;
+      font-size: 1.15em;
+      color: var(--rose);
+      text-shadow: 0 2px 8px rgba(217, 138, 138, 0.22);
+      margin-top: 4px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-weight: 700;
+      color: var(--gold-deep);
+      margin: 8px 0 18px;
+      font-style: italic;
+    }
+
+    .name {
+      display: none;
+    }
+
+    .badge-wrap {
+      display: none;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      align-items: stretch;
+      margin: 0 auto 22px;
+    }
+
+    .photo {
+      position: relative;
+      background: #fff;
+      border: 5px solid rgba(255,255,255,0.88);
+      box-shadow: 0 16px 30px rgba(58, 42, 36, 0.12);
+      overflow: hidden;
+      border-radius: 18px;
+      min-height: 150px;
+      transform: rotate(var(--angle, 0deg));
+      animation: photoDrift 7s ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 220ms ease;
+    }
+
+    .photo:hover img {
+      transform: scale(1.04);
+    }
+
+    .p1 { grid-column: span 4; min-height: 220px; --angle: -2deg; --delay: 0s; }
+    .p2 { grid-column: span 4; min-height: 220px; --angle: 2deg; --delay: 0.4s; }
+    .p3 { grid-column: span 4; min-height: 220px; --angle: -1.5deg; --delay: 0.8s; }
+    .p4 { grid-column: span 3; min-height: 200px; --angle: 1.6deg; --delay: 0.2s; }
+    .p5 { grid-column: span 3; min-height: 200px; --angle: -1.1deg; --delay: 0.6s; }
+    .p6 { grid-column: span 3; min-height: 200px; --angle: 1.4deg; --delay: 1s; }
+    .p7 { grid-column: span 3; min-height: 200px; --angle: -2.2deg; --delay: 0.5s; }
+    .p8 { grid-column: span 6; min-height: 220px; --angle: 1.3deg; --delay: 0.9s; }
+    .p9 { grid-column: span 6; min-height: 220px; --angle: -1.4deg; --delay: 0.3s; }
+
+    .message {
+      text-align: center;
+      font-size: clamp(1.03rem, 2vw, 1.3rem);
+      line-height: 1.8;
+      max-width: 740px;
+      margin: 0 auto;
+      color: rgba(45,34,31,0.88);
+      background: rgba(255,255,255,0.48);
+      border: 1px solid rgba(182, 129, 45, 0.18);
+      border-radius: 18px;
+      padding: 18px 24px;
+    }
+
+    .message strong {
+      color: var(--gold-deep);
+      font-weight: 800;
+    }
+
+    .signature {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 2.2rem;
+      opacity: 0.9;
+      animation: sway 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    @keyframes sway {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-6px); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes cardFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(0.4deg); }
+    }
+
+    @keyframes balloonBob {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(4deg); }
+    }
+
+    @keyframes photoDrift {
+      0%, 100% { transform: translateY(0px) rotate(var(--angle, 0deg)); }
+      50% { transform: translateY(-7px) rotate(calc(var(--angle, 0deg) + 1.2deg)); }
+    }
+
+    @media (max-width: 760px) {
+      .card {
+        padding: 26px 18px 22px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .main-photo {
+        min-height: 350px;
+      }
+
+      .mini-stack {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="content">
+      <div class="top-row" aria-label="Birthday balloons">
+        <span class="balloon">🎈</span>
+        <span class="balloon">🎉</span>
+        <span class="balloon">🎈</span>
+      </div>
+
+      <div class="eyebrow">Celebrating a beautiful milestone</div>
+      <h1>
+        <span class="line-1">Happy Birthday</span>
+        <span class="line-2">Nikki Brown!</span>
+      </h1>
+      <div class="subtitle">Some of the memories of the past 24 years.</div>
+
+      <section class="gallery" aria-label="Nikki birthday memories">
+        <figure class="photo p1"><img src="nikki/3FF1850E-6570-4A42-8DCB-11F16F3F375A_1_105_c.jpeg" alt="Nikki happy memory" /></figure>
+        <figure class="photo p2"><img src="nikki/4D2F4ACF-DEDD-420D-A580-9895D02350BE_1_105_c.jpeg" alt="Newest Nikki photo" /></figure>
+        <figure class="photo p3"><img src="nikki/5EA2D6E0-2898-40EF-A236-CF6F3CC47BC1_1_105_c.jpeg" alt="Nikki joyful moment" /></figure>
+        <figure class="photo p4"><img src="nikki/602D1E1F-C10A-4E06-9078-8B0FCBB19958_1_105_c.jpeg" alt="Nikki celebration" /></figure>
+        <figure class="photo p5"><img src="nikki/67456B2C-983A-4807-BC18-57590E88A6D6_1_105_c.jpeg" alt="Nikki smile" /></figure>
+        <figure class="photo p6"><img src="nikki/6981EE9D-E8E5-4E81-9CB1-33891B0F6E1A_1_105_c.jpeg" alt="Nikki moment" /></figure>
+        <figure class="photo p7"><img src="nikki/71852C96-7D3D-413D-BC11-2F3C4A78B721_1_105_c.jpeg" alt="Nikki portrait" /></figure>
+        <figure class="photo p8"><img src="nikki/B02CB7C1-16F3-4498-83FA-58FDD79CD7C8_1_105_c.jpeg" alt="Nikki smiling" /></figure>
+        <figure class="photo p9"><img src="nikki/C24FF0DF-6FA1-4A30-9A67-B0C02FBBDF37_1_105_c.jpeg" alt="Nikki smiling outdoors" /></figure>
+      </section>
+
+      <p class="message">
+        I am so lucky to have been able to share the last one-third of this amazing life. You continue to enrich the lives of everyone you meet, helping them feel loved and appreciated. The world you inhabit is simply a much better world thanks to your energy, spirit, and love. Here’s to many more happy moments, treasured friendships, and sweet days ahead. 💛
+      </p>
+
+      <div class="signature">With much love, Dan</div>
+      <div class="footer">💛💛💛💛💛💛💛💛💛💛</div>
+    </div>
+  </main>
+</body>
+</html>

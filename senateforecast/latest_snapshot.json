@@ -1,0 +1,14 @@
+{
+  "count": 7,
+  "overall_probability": 0.6686,
+  "states": {
+    "Alaska": 0.51,
+    "Georgia": 0.92,
+    "Maine": 0.695,
+    "Michigan": 0.605,
+    "North Carolina": 0.91,
+    "Ohio": 0.525,
+    "Texas": 0.515
+  },
+  "timestamp": "2026-08-13T13:34:52Z"
+}
